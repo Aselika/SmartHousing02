@@ -1,0 +1,50 @@
+﻿@page
+@model WebApp.Pages.Zones.IndexModel
+@{
+    ViewData["Title"] = "Зоны";
+}
+<main class="container">
+    <h1 class="mb-4">@ViewData["Title"]</h1>
+    <a class="btn btn-primary mb-4" asp-page="Create">
+        <i class="fa fa-plus me-2"></i>Создать зону
+    </a>
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>Название</th>
+                    <th>Тип</th>
+                    <th>План.</th>
+                    <th>Вкл.</th>
+                    <th>Выкл.</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var z in Model.Zone)
+                {
+                    <tr>
+                        <td>@z.Name</td>
+                        <td>@z.Type</td>
+                        <td>
+                            <i class="fa @(z.SupportsScheduling ? "fa-calendar-check text-success" : "fa-times text-muted")"></i>
+                        </td>
+                        <td><code>@z.CommandOn</code></td>
+                        <td><code>@z.CommandOff</code></td>
+                        <td class="text-end">
+                            <a asp-page="Edit" asp-route-id="@z.ZoneId" class="btn btn-sm btn-outline-primary me-1">
+                                <i class="fa fa-pen"></i>
+                            </a>
+                            <a asp-page="Details" asp-route-id="@z.ZoneId" class="btn btn-sm btn-outline-secondary me-1">
+                                <i class="fa fa-info-circle"></i>
+                            </a>
+                            <a asp-page="Delete" asp-route-id="@z.ZoneId" class="btn btn-sm btn-outline-danger">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</main>  

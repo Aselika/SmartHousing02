@@ -1,0 +1,64 @@
+﻿@page
+@model WebApp.Pages.Monitoring.VideoModel
+@{
+    ViewData["Title"] = "Видеомониторинг";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">@ViewData["Title"]</h1>
+
+    <div class="row gx-4 gy-4">
+        @for (int i = 0; i < 6; i++)
+        {
+            <div class="col-12 col-md-6 col-lg-2">
+                @if (i == 0)
+                {
+                    <div class="monitor-slot">
+                        <video id="videoElement" autoplay playsinline muted></video>
+                        <div id="currentTime" class="time-overlay">00:00:00</div>
+                    </div>
+                }
+                else
+                {
+                    <div class="monitor-slot placeholder">
+                        <div class="text-center">
+                            <i class="fa fa-video-slash fa-3x text-muted"></i>
+                            <p class="mt-2 text-muted mb-0">Камера не<br />подключена</p>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+
+    <div id="errorMsg" class="alert alert-danger d-none mt-3"></div>
+</div>
+
+@section Scripts {
+    <script>
+        (async () => {
+          const video = document.getElementById('videoElement');
+          const errorMsg = document.getElementById('errorMsg');
+          const timeContainer = document.getElementById('currentTime');
+
+          try {
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            video.srcObject = stream;
+          } catch (err) {
+            console.error(err);
+            errorMsg.textContent = 'Не удалось получить доступ к камере: ' + err.message;
+            errorMsg.classList.remove('d-none');
+          }
+
+          function updateTime() {
+            const now = new Date();
+            const hh = String(now.getHours()).padStart(2,'0');
+            const mm = String(now.getMinutes()).padStart(2,'0');
+            const ss = String(now.getSeconds()).padStart(2,'0');
+            timeContainer.textContent = `${hh}:${mm}:${ss}`;
+          }
+          updateTime();
+          setInterval(updateTime, 1000);
+        })();
+    </script>
+}

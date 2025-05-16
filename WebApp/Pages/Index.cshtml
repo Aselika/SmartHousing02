@@ -1,0 +1,71 @@
+﻿@page
+@model WebApp.Pages.IndexModel
+@{
+    ViewData["Title"] = "Главная";
+}
+
+
+<!-- Геройский баннер -->
+<div class="hero mb-5">
+    <div class="container">
+        <h1 class="display-2 fw-bold">Умный комплекс SmartHousing</h1>
+        <p class="lead">Управление зонами, расписаниями и мониторинг в реальном времени</p>
+        <a class="btn btn-primary btn-lg mt-3" asp-page="/Dashboard/Index">
+            Перейти в панель управления
+        </a>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <h1 class="mb-4">Добро пожаловать в SmartHousing</h1>
+
+    <div class="row g-4 mb-4">
+        <div class="col-md-4">
+            <div class="card text-center shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Зон всего</h5>
+                    <p class="display-4">@Model.ZonesCount</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Правил расписаний</h5>
+                    <p class="display-4">@Model.SchedulesCount</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">Событий всего</h5>
+                    <p class="display-4">@Model.EventsCount</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="mb-3">Последние события</h3>
+    <ul class="list-group mb-5">
+        @foreach (var e in Model.RecentEvents)
+        {
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div>
+                    <div><strong>@e.Zone.Name</strong></div>
+                    <div class="small text-muted">@e.Timestamp.ToLocalTime().ToString("dd.MM.yyyy HH:mm"): @e.EventType</div>
+                </div>
+                <i class="fa fa-history text-primary fs-4"></i>
+            </li>
+        }
+    </ul>
+
+    <div class="d-flex gap-2">
+        <a class="btn btn-primary" asp-page="/Zones/Index">
+            <i class="fa fa-lightbulb me-1"></i> Зоны
+        </a>
+        <a class="btn btn-primary" asp-page="/Schedules/Index">
+            <i class="fa fa-calendar-alt me-1"></i> Расписания
+        </a>
+    </div>
+</div>

@@ -1,0 +1,163 @@
+/* --- Базовые переопределения для «tech-giant» стиля --- */
+
+
+
+:root {
+    /* Фон страницы */
+    --bg-page: #e3f2fd; /* light-blue-50 */
+    /* Основной цвет (для кнопок, ссылок и т.д.) */
+    --primary: #2196f3; /* blue-500 */
+    /* Акцентный (для hover на primary) */
+    --primary-2: #1976d2; /* blue-700 */
+    /* Текст на светлом фоне */
+    --text-dark: #0d47a1; /* blue-900 */
+    /* Фон карточек/панелей */
+    --bg-card: #ffffff; /* чисто белый для контраста */
+}
+
+body {
+    background-color: var(--bg-page);
+    color: var(--text-dark);
+    font-family: 'Inter', sans-serif;
+}
+
+/* Кнопки primary */
+.btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    transition: background-color 0.3s ease;
+}
+
+    .btn-primary:hover,
+    .btn-primary:focus {
+        background-color: var(--primary-2);
+        border-color: var(--primary-2);
+    }
+
+/* Карточки */
+.card {
+    background-color: var(--bg-card);
+    border: none;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Навигация */
+.navbar {
+    background-color: var(--bg-card) !important;
+}
+
+/* Ссылки в меню */
+.nav-link.active,
+.nav-link:hover {
+    color: var(--primary) !important;
+}
+
+/* Футер */
+.footer {
+    background-color: var(--bg-card);
+}
+
+
+/* Если у вас есть светлые элементы, им прописать overrides */
+.btn-primary {
+    background: #0d6efd; /* или градиент на тёмном фоне */
+}
+
+/* Кнопки primary — градиент и мягкий hover */
+.btn-primary {
+    background: linear-gradient(45deg, #0066ff, #00ccff);
+    border: none;
+    transition: background 0.3s ease;
+}
+
+    .btn-primary:hover {
+        background: linear-gradient(45deg, #0052cc, #0099cc);
+    }
+
+/* Карточки — без границы, с radius и «плавающей» тенью */
+.card {
+    border: none;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Заголовки чуть жирнее */
+h1, h3 {
+    font-weight: 500;
+}
+
+/* Отступы основной области */
+main.container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+/* Герой-блок на Home */
+.hero {
+    position: relative;
+    background-image: url('/images/hero.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding: 120px 0;
+    color: #fff;
+    text-align: center;
+}
+
+    .hero::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.3);
+    }
+
+    .hero .container {
+        position: relative; /* чтобы текст был поверх затемнения */
+        z-index: 1;
+    }
+
+
+
+
+/* Слот под видео/заглушку с aspect-ratio */
+.monitor-slot {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9; /* 16:9 вместо padding-top */
+    background: #000;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+    /* Видео растягивается на весь слот */
+    .monitor-slot video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+/* Временная метка */
+.time-overlay {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-family: monospace;
+    z-index: 1;
+}
+
+/* Заглушка */
+.placeholder {
+    background: #f0f0f0;
+    display: flex !important; /* чтобы центрировать содержимое */
+    justify-content: center;
+    align-items: center;
+}

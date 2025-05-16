@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SmartHousing</title>
+
+    <!-- Inter от Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet" />
+
+    <!-- Bootswatch Lux: минимал, мягкие тени и светлые акценты -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/lux/bootstrap.min.css"
+          integrity="sha384-…"
+          crossorigin="anonymous" />
+
+    <!-- Ваши переопределения -->
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <!-- FontAwesome для иконок -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          integrity="sha512-…"
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm mb-4">
+            <div class="container">
+                <a class="navbar-brand fw-bold" asp-area="" asp-page="/Index">SmartHousing</a>
+                <button class="navbar-toggler" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Index" asp-page-active="active">
+                                Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy" asp-page-active="active">
+                                Privacy
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Zones/Index" asp-page-active="active">
+                                Зоны
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Schedules/Index" asp-page-active="active">
+                                Расписания
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Dashboard/Index" asp-page-active="active">
+                                Панель
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Monitoring/Video" asp-page-active="active">
+                                Мониторинг
+                            </a>
+                        </li>
+
+                    </ul>
+                    <div class="d-flex">
+                        <partial name="_LoginPartial" />
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main" class="container">
+        @RenderBody()
+    </main>
+
+    <footer class="border-top footer text-muted py-3">
+        <div class="container">
+            &copy; 2025 - SmartHousing — <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <!-- Скрипты -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,49 @@
+﻿@page
+@model WebApp.Pages.Zones.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Детали зоны</h1>
+
+<div>
+    <h4>Zone</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Zone.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Zone.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Zone.Type)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Zone.Type)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Zone.SupportsScheduling)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Zone.SupportsScheduling)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Zone.CommandOn)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Zone.CommandOn)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Zone.CommandOff)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Zone.CommandOff)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Zone.ZoneId">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

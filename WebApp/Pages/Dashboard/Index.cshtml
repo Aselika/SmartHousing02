@@ -1,0 +1,56 @@
+﻿@page
+@model WebApp.Pages.Dashboard.IndexModel
+
+@{
+    ViewData["Title"] = "Панель управления";
+}
+
+
+<div class="container mt-4">
+    <h1>@ViewData["Title"]</h1>
+
+    <p>Добро пожаловать, @User.Identity.Name!</p>
+
+<div class="row g-4">
+    @foreach (var z in Model.Zones)
+    {
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">@z.Name</h5>
+                    <p class="card-text mb-1">
+                        <strong>Тип:</strong> @z.Type
+                    </p>
+                    <p class="card-text mb-1">
+                            <strong>Расписание:</strong>
+                            @if (z.SupportsScheduling)
+                            {
+                                <span class="badge bg-success">да</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">нет</span>
+                            }
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<h3 class="mt-5">Последние события</h3>
+<ul class="list-group">
+    @foreach (var e in Model.Events)
+    {
+            <li class="list-group-item d-flex justify-content-between align-items-center py-2">
+            <div>
+                <div><strong>@e.Zone.Name</strong></div>
+                    <div class="small text-muted">
+                        @e.Timestamp.ToLocalTime().ToString("dd.MM.yyyy HH:mm")
+                        : @e.EventType
+                    </div>
+            </div>
+                <i class="fa fa-history text-primary ms-3"></i>
+        </li>
+    }
+</ul>
